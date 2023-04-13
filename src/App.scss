@@ -7,22 +7,7 @@ $text-main: #000000;
   width: 100%;
   max-width: 1400px;
   margin: 10px auto 0;
-  .border-tic {
-    border-bottom: 1px solid gray;
-  }
-  .tic-box {
-    background: #ff0;
-    .tic {
-      width: 344px;
-      height: 185px;
-      background: #0ccbcd;
-    }
-  }
-  .icon-box {
-    width: 100%;
-    max-width: 1400px;
-    background: green;
-    bottom: 0px;
-    // z-index: 999;
+  p {
+    margin: 0;
   }
 }

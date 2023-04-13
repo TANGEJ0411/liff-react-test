@@ -1,0 +1,26 @@
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+
+.detail-wrap {
+  .detail-pic-box {
+    max-width: 764px;
+    max-height: 301px;
+    .pic {
+      width: 100%;
+      height: 213px;
+      object-fit: cover;
+    }
+  }
+  .border-word {
+    border-bottom: 3px dashed grey;
+  }
+  .detail-word-box {
+    padding: 10px;
+    max-width: 764px;
+    background: #0fa;
+  }
+  .detail-tic-box {
+    padding: 10px;
+    max-width: 764px;
+    background: #0faf0f;
+  }
+}
