@@ -10,36 +10,22 @@ function HomePage() {
     const [isLoggedIn, setIsloggedin] = useState(false)
 
     useEffect(() => {
-        async function initLogin() {
-            if (loginReq || liff.isInClient()) {
-                await liff.init({ liffId: "1660858533-loqWyNQE", })
-                console.log("初始化成功");
-                // Start to use liff's api
+        async function login() {
+            try {
+                await liff.ready;
                 if (!liff.isLoggedIn()) {
-                    console.log("你還沒登入Line哦！");
-                    liff.login({ redirectUri: window.location.href });
-                } else {
-                    console.log("你已經登入Line哦！");
-                    const idToken = liff.getDecodedIDToken();
-                    console.log(idToken); // print decoded idToken object
-                    setProfile(idToken)
-                    liff.sendMessages([
-                        {
-                            type: "text",
-                            text: "Hello, World!",
-                        },
-                    ])
-                        .then(() => {
-                            console.log("message sent");
-                        })
-                        .catch((err) => {
-                            console.log("error", err);
-                        });
-                    // const idToken = liff.getDecodedIDToken()
+                    liff.login()
+                    return
                 }
+                const idToken = await liff.getDecodedIDToken()
+                setProfile(idToken)
+            } catch (err) {
+                // 發生錯誤
+                console.log(err.code, err.message)
+                alert(err.message)
             }
         }
-        initLogin()
+        login()
     }, [loginReq])
     // useEffect(() => { }, [])
 
@@ -66,19 +52,16 @@ function HomePage() {
                                     "altText": "this is a flex message",
                                     "contents": {
                                         "type": "bubble",
-                                        "header": {
-                                            "type": "box",
-                                            "layout": "vertical",
-                                            "contents": [
-                                                {
-                                                    "type": "text",
-                                                    "text": "Header text"
-                                                }
-                                            ]
-                                        },
                                         "hero": {
                                             "type": "image",
-                                            "url": `${pic}`,
+                                            "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+                                            "size": "full",
+                                            "aspectRatio": "20:13",
+                                            "aspectMode": "cover",
+                                            "action": {
+                                                "type": "uri",
+                                                "uri": "http://linecorp.com/"
+                                            }
                                         },
                                         "body": {
                                             "type": "box",
@@ -86,33 +69,137 @@ function HomePage() {
                                             "contents": [
                                                 {
                                                     "type": "text",
-                                                    "text": "Body text"
+                                                    "text": "Brown Cafe",
+                                                    "weight": "bold",
+                                                    "size": "xl"
+                                                },
+                                                {
+                                                    "type": "box",
+                                                    "layout": "baseline",
+                                                    "margin": "md",
+                                                    "contents": [
+                                                        {
+                                                            "type": "icon",
+                                                            "size": "sm",
+                                                            "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+                                                        },
+                                                        {
+                                                            "type": "icon",
+                                                            "size": "sm",
+                                                            "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+                                                        },
+                                                        {
+                                                            "type": "icon",
+                                                            "size": "sm",
+                                                            "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+                                                        },
+                                                        {
+                                                            "type": "icon",
+                                                            "size": "sm",
+                                                            "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+                                                        },
+                                                        {
+                                                            "type": "icon",
+                                                            "size": "sm",
+                                                            "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png"
+                                                        },
+                                                        {
+                                                            "type": "text",
+                                                            "text": "4.0",
+                                                            "size": "sm",
+                                                            "color": "#999999",
+                                                            "margin": "md",
+                                                            "flex": 0
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "box",
+                                                    "layout": "vertical",
+                                                    "margin": "lg",
+                                                    "spacing": "sm",
+                                                    "contents": [
+                                                        {
+                                                            "type": "box",
+                                                            "layout": "baseline",
+                                                            "spacing": "sm",
+                                                            "contents": [
+                                                                {
+                                                                    "type": "text",
+                                                                    "text": "Place",
+                                                                    "color": "#aaaaaa",
+                                                                    "size": "sm",
+                                                                    "flex": 1
+                                                                },
+                                                                {
+                                                                    "type": "text",
+                                                                    "text": "Miraina Tower, 4-1-6 Shinjuku, Tokyo",
+                                                                    "wrap": true,
+                                                                    "color": "#666666",
+                                                                    "size": "sm",
+                                                                    "flex": 5
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "box",
+                                                            "layout": "baseline",
+                                                            "spacing": "sm",
+                                                            "contents": [
+                                                                {
+                                                                    "type": "text",
+                                                                    "text": "Time",
+                                                                    "color": "#aaaaaa",
+                                                                    "size": "sm",
+                                                                    "flex": 1
+                                                                },
+                                                                {
+                                                                    "type": "text",
+                                                                    "text": "10:00 - 23:00",
+                                                                    "wrap": true,
+                                                                    "color": "#666666",
+                                                                    "size": "sm",
+                                                                    "flex": 5
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
                                                 }
                                             ]
                                         },
                                         "footer": {
                                             "type": "box",
                                             "layout": "vertical",
+                                            "spacing": "sm",
                                             "contents": [
                                                 {
-                                                    "type": "text",
-                                                    "text": "Footer text"
+                                                    "type": "button",
+                                                    "style": "link",
+                                                    "height": "sm",
+                                                    "action": {
+                                                        "type": "uri",
+                                                        "label": "CALL",
+                                                        "uri": "https://linecorp.com"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "button",
+                                                    "style": "link",
+                                                    "height": "sm",
+                                                    "action": {
+                                                        "type": "uri",
+                                                        "label": "WEBSITE",
+                                                        "uri": "https://linecorp.com"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "box",
+                                                    "layout": "vertical",
+                                                    "contents": [],
+                                                    "margin": "sm"
                                                 }
-                                            ]
-                                        },
-                                        "styles": {
-                                            "header": {
-                                                "backgroundColor": "#00ffff"
-                                            },
-                                            "hero": {
-                                                "separator": true,
-                                                "separatorColor": "#000000"
-                                            },
-                                            "footer": {
-                                                "backgroundColor": "#00ffff",
-                                                "separator": true,
-                                                "separatorColor": "#000000"
-                                            }
+                                            ],
+                                            "flex": 0
                                         }
                                     }
                                 }

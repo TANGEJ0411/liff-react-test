@@ -1,16 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import pic from '../bg5.jpg'
 import './Detail.scss'
-import { Button } from 'bootstrap'
+import liff from '@line/liff';
 
 function Detail() {
+    const [profile, setProfile] = useState({})
+    useEffect(() => {
+        const startLiff = async function () {
+            try {
+                await liff.ready;
+                const idToken = await liff.getDecodedIDToken();
+                console.log(idToken)
+                setProfile(idToken)
+            } catch (error) {
+                console.error(error)
+            }
+        }
+        startLiff()
+    }, [])
     return (
         <div className='detail-wrap'>
             <div className='detail-pic-box mx-auto'>
                 <img src={pic} className='pic' />
             </div>
             <div className='detail-word-box mx-auto mb-3'>
-                <p>北投五星</p>
+                <p>{`${profile.name} ${profile.email}`}</p>
                 <h4>極上一泊二食 | 2022ITF台北國際旅展住宿券極上一泊二食 </h4>
                 <div className='d-flex justify-content-between border-word my-2 pb-3'>
                     <p>$19,999</p>
