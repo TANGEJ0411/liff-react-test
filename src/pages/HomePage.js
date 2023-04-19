@@ -9,24 +9,24 @@ function HomePage() {
     const [profile, setProfile] = useState({})
     const [isLoggedIn, setIsloggedin] = useState(false)
 
-    useEffect(() => {
-        async function login() {
-            try {
-                await liff.ready;
-                if (!liff.isLoggedIn()) {
-                    liff.login()
-                    return
-                }
-                const idToken = await liff.getDecodedIDToken()
-                setProfile(idToken)
-            } catch (err) {
-                // 發生錯誤
-                console.log(err.code, err.message)
-                alert(err.message)
-            }
-        }
-        login()
-    }, [loginReq])
+    // useEffect(() => {
+    //     async function login() {
+    //         try {
+    //             await liff.ready;
+    //             if (!liff.isLoggedIn()) {
+    //                 liff.login()
+    //                 return
+    //             }
+    //             const idToken = await liff.getDecodedIDToken()
+    //             setProfile(idToken)
+    //         } catch (err) {
+    //             // 發生錯誤
+    //             console.log(err.code, err.message)
+    //             alert(err.message)
+    //         }
+    //     }
+    //     login()
+    // }, [loginReq])
     // useEffect(() => { }, [])
 
     // useEffect(() => {
@@ -229,54 +229,74 @@ function HomePage() {
                 <h6 className='border-tic flex-fill text-center'>即享券</h6>
             </div>
             <div className='tic-box'>
-                <div className='d-md-flex justify-content-md-center'>
-                    <div className='tic my-1 mx-auto mx-md-2'>
-                        <p>{`我是${profile.name}的票email是${profile.email}`}</p>
-                        <Link to={'/detail'}>detail</Link>
+                <div className='d-md-flex justify-content-md-center tic-div'>
+                    <div className='tic-shadow my-1 mx-auto mx-md-2'>
+                        <div className='tic'>
+                            <p>{`我是${profile.name}的票email是${profile.email}`}</p>
+                            <Link to={'/detail'}>detail</Link>
+                        </div>
                     </div>
-                    <div className='tic my-1 mx-auto mx-md-2'>
-                        <p>{`我是${profile.name}的票email是${profile.email}`}</p>
-                        <Link to={'/detail'}>detail</Link>
-                    </div>
-                </div>
-                <div className='d-md-flex justify-content-md-center'>
-                    <div className='tic my-1 mx-auto mx-md-2'>
-                        <p>{`我是${profile.name}的票email是${profile.email}`}</p>
-                        <Link to={'/detail'}>detail</Link>
-                    </div>
-                    <div className='tic my-1 mx-auto mx-md-2'>
-                        <p>{`我是${profile.name}的票email是${profile.email}`}</p>
-                        <Link to={'/detail'}>detail</Link>
+                    <div className='tic-shadow my-1 mx-auto mx-md-2'>
+                        <div className='tic'>
+                            <p>{`我是${profile.name}的票email是${profile.email}`}</p>
+                            <Link to={'/detail'}>detail</Link>
+                        </div>
                     </div>
                 </div>
-                <div className='d-md-flex justify-content-md-center'>
-                    <div className='tic my-1 mx-auto mx-md-2'>
-                        <p>{`我是${profile.name}的票email是${profile.email}`}</p>
-                        <Link to={'/detail'}>detail</Link>
+                <div className='d-md-flex justify-content-md-center tic-div'>
+                    <div className='tic-shadow my-1 mx-auto mx-md-2'>
+                        <div className='tic'>
+                            <p>{`我是${profile.name}的票email是${profile.email}`}</p>
+                            <Link to={'/detail'}>detail</Link>
+                        </div>
                     </div>
-                    <div className='tic my-1 mx-auto mx-md-2'>
-                        <p>{`我是${profile.name}的票email是${profile.email}`}</p>
-                        <Link to={'/detail'}>detail</Link>
-                    </div>
-                </div>
-                <div className='d-md-flex justify-content-md-center'>
-                    <div className='tic my-1 mx-auto mx-md-2'>
-                        <p>{`我是${profile.name}的票email是${profile.email}`}</p>
-                        <Link to={'/detail'}>detail</Link>
-                    </div>
-                    <div className='tic my-1 mx-auto mx-md-2'>
-                        <p>{`我是${profile.name}的票email是${profile.email}`}</p>
-                        <Link to={'/detail'}>detail</Link>
+                    <div className='tic-shadow my-1 mx-auto mx-md-2'>
+                        <div className='tic'>
+                            <p>{`我是${profile.name}的票email是${profile.email}`}</p>
+                            <Link to={'/detail'}>detail</Link>
+                        </div>
                     </div>
                 </div>
-                <div className='d-md-flex justify-content-md-center'>
-                    <div className='tic my-1 mx-auto mx-md-2'>
-                        <p>{`我是${profile.name}的票email是${profile.email}`}</p>
-                        <Link to={'/detail'}>detail</Link>
+                <div className='d-md-flex justify-content-md-center tic-div'>
+                    <div className='tic-shadow my-1 mx-auto mx-md-2'>
+                        <div className='tic'>
+                            <p>{`我是${profile.name}的票email是${profile.email}`}</p>
+                            <Link to={'/detail'}>detail</Link>
+                        </div>
                     </div>
-                    <div className='tic my-1 mx-auto mx-md-2'>
-                        <p>{`我是${profile.name}的票email是${profile.email}`}</p>
-                        <Link to={'/detail'}>detail</Link>
+                    <div className='tic-shadow my-1 mx-auto mx-md-2'>
+                        <div className='tic'>
+                            <p>{`我是${profile.name}的票email是${profile.email}`}</p>
+                            <Link to={'/detail'}>detail</Link>
+                        </div>
+                    </div>
+                </div>
+                <div className='d-md-flex justify-content-md-center tic-div'>
+                    <div className='tic-shadow my-1 mx-auto mx-md-2'>
+                        <div className='tic'>
+                            <p>{`我是${profile.name}的票email是${profile.email}`}</p>
+                            <Link to={'/detail'}>detail</Link>
+                        </div>
+                    </div>
+                    <div className='tic-shadow my-1 mx-auto mx-md-2'>
+                        <div className='tic'>
+                            <p>{`我是${profile.name}的票email是${profile.email}`}</p>
+                            <Link to={'/detail'}>detail</Link>
+                        </div>
+                    </div>
+                </div>
+                <div className='d-md-flex justify-content-md-center tic-div'>
+                    <div className='tic-shadow my-1 mx-auto mx-md-2'>
+                        <div className='tic'>
+                            <p>{`我是${profile.name}的票email是${profile.email}`}</p>
+                            <Link to={'/detail'}>detail</Link>
+                        </div>
+                    </div>
+                    <div className='tic-shadow my-1 mx-auto mx-md-2'>
+                        <div className='tic'>
+                            <p>{`我是${profile.name}的票email是${profile.email}`}</p>
+                            <Link to={'/detail'}>detail</Link>
+                        </div>
                     </div>
                 </div>
             </div>
